@@ -38,14 +38,17 @@ export default function App() {
     <>
       <StatusBar barStyle="light-content" backgroundColor="#7159c1" />
       <SafeAreaView style={styles.container}>
+        <View style={styles.headerContainer}>
+         <Text style={styles.headerTitle}>Repositories</Text>
+        </View>
         
         <FlatList 
-          style={styles.repositoryContainer}
+          style={styles.listContainer}
           data={repositories}
           keyExtractor={repository => repository.id}
           renderItem={({ item: repository }) => (
-            <>
-              <Text style={styles.repository}>{repository.title}</Text>
+            <View style={styles.repositoryContainer}>
+              <Text style={styles.titleRepository}>{repository.title}</Text>
 
               <View style={styles.techsContainer}>
                 {repository.techs.map( tech => (
@@ -69,7 +72,7 @@ export default function App() {
               >
                 <Text style={styles.buttonText}>Curtir</Text>
               </TouchableOpacity>
-            </>
+            </View>
           )}
         />
       </SafeAreaView>
@@ -82,14 +85,34 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#7159c1",
   },
-  repositoryContainer: {
+
+  headerContainer: {
+    backgroundColor: "#fff",
+    marginHorizontal: 15,
+    paddingTop: 20,
+    paddingHorizontal: 15,
+    paddingBottom: 10,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  headerTitle: {
+    fontSize: 28,
+    fontWeight: "bold",
+  },
+
+  listContainer: {
     marginBottom: 15,
     marginHorizontal: 15,
     backgroundColor: "#fff",
     padding: 20,
+    paddingTop: 0,
   },
-  repository: {
-    fontSize: 32,
+  repositoryContainer: {
+    marginTop:10,
+    paddingBottom: 10,
+  },
+  titleRepository: {
+    fontSize: 20,
     fontWeight: "bold",
   },
   techsContainer: {
@@ -106,7 +129,7 @@ const styles = StyleSheet.create({
     color: "#fff",
   },
   likesContainer: {
-    marginTop: 15,
+    marginTop: 5,
     flexDirection: "row",
     justifyContent: "space-between",
   },
